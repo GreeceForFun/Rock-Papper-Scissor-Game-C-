@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    srand(time(NULL));
+    int user, computer = rand() % 4;
+    char name[] = "";
+    int game = 0;
+    int again = 0;
+    int userwins = 0;
+    int compwins = 0;
+    
+    void myRounds() {
+    printf("\nYour Wins %d\n", userwins);
+    printf("Enemy's Wins %d\n", compwins);
+    }
+    
+    printf("Welcome To My Game!\n");
+    
+    // Asks User For Username
+    printf("Type Your Name: ");
+    scanf("%s", &name);
+    printf("\n\n");
+    
+    printf("Welcome %s To My Game\n", name);
+    
+    // Loop Starts Here!
+    while (game == 0) {
+    printf("Type '0' For Rock\n");
+    printf("Type '1' For Paper\n");
+    printf("Type '2' For Scissors\n");
+    printf("Type '3' For Pencil\n\n");
+    printf("Input: ");
+    scanf("%d", &user);
+    
+    if ((user == 0) || (user == 1) || (user == 2) || (user == 3)) {
+        printf("You chose %s!\n", (user == 0) ? "Rock" : (user == 1) ? "Paper" : (user == 3) ? "Pencil" : "Scissors");
+        printf("Enemy chose %s!\n", (computer == 0) ? "Rock" : (computer == 1) ? "Paper" : (computer == 3) ? "Pencil" : "Scissors");
+        
+    // Prints If The User Lost,Won or Draw
+    } if (user==computer) {
+        printf("Draw!\n");
+        myRounds();
+    } else if ((user == 0 && computer == 2) || (user == 1 && computer == 0) || (user == 2 && computer == 1) || (user == 3 && computer == 1)) {
+        printf("You Won This Round!\n");
+        userwins++;
+        myRounds();
+    } else if ((user == 2 && computer == 0) || (user == 1 && computer == 2) || (user == 0 && computer == 1) || (user == 1 && computer == 3) || (user == 3 && computer == 0) || (user == 3 && computer == 2)) {
+        printf("Enemy Won This Round!\n");
+        compwins++;
+        myRounds();
+    } else {
+        printf("Choise %d an invalid Choise (Select 0,1,2 or 3!)\n", user);
+    }
+    }
+    
+    // Asks User If He Wants To Play Again
+    printf("\nPlay Again? (1 To Play Again/2 To Exit): ");
+    scanf("%d", &again);
+    
+    if (again == 2) {
+        if (userwins > compwins) {
+        printf("You Won This Game!");
+    } else if (compwins > userwins) {
+        printf("Enemy Won This Game!");
+    } else {
+        printf("Draw For This Game!");
+    }
+        
+    
+    if (again == 2) {
+        printf("\nGoodbye!");
+        game = 1;
+    }
+    }
+    
+    return 0;
+}
