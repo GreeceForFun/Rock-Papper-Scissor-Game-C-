@@ -5,7 +5,7 @@
 int main() {
     srand(time(NULL));
     int user, computer = rand() % 4;
-    char name[] = "";
+    char name[50] = "";
     int game = 0;
     int again = 0;
     int userwins = 0;
